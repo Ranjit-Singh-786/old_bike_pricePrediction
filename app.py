@@ -3,6 +3,10 @@ import jsonify
 import pickle
 import numpy 
 import sklearn
+import pymongo    # for deal with the mongodb database
+client=pymongo.MongoClient('mongodb://127.0.0.1:27017')       # create connection for the mongodb
+mydb=client['Bikeproject']  # create the database for the project
+colle=mydb.bike_data      # collection create
 model=pickle.load(open('bike_price_prediction.pkl','rb'))
 app=Flask(__name__)
 @app.route('/',methods=['GET'])
@@ -11,9 +15,13 @@ def Home():
 @app.route('/predict', methods=['GET','POST'])
 def predict():
     if request.method=='POST':
+        kms_driven=request.form['Kms_Driven']   # gathering the document
+        owner=request.form['owner']
+        age=int(request.form['age'])
+        power=int(request.form['power'])
         brand=request.form['brand_name']
-
-        if (brand=='Royal Enfield'):
+        record={'bike':brand,'kilometeres':kms_driven,'handed':owner,'year':age,'power':power}        # create the json document for database
+        if (brand=='Royal Enfield'):  # feature scaling string into integer
             brand=1
         elif(brand=='KTM'):
             brand=2
@@ -43,30 +51,11 @@ def predict():
             brand=14
         elif(brand=='BMW'):
             brand=15
-        kms_driven=request.form['Kms_Driven']
-        owner=request.form['owner']
-        age=int(request.form['age'])
-        power=int(request.form['power'])
-        
-        prediction=model.predict([[kms_driven,owner,age,power,brand]])
-        output=str(prediction[0])
+        prediction=model.predict([[kms_driven,owner,age,power,brand]])  # pass value in the model
+        output=str(prediction[0])    # change dtype int into string of prediction
         output2=str(output)
-    return render_template('index.html',prediction_text=f' {output2}')
-    # return render_template('chek.html')
-    # return model.predict([[kms_driven,owner,age,power,brand]])
-
-
-
-
-
-
-        
-
-        # return render_template('index.html',prediction_text=f'this is bike price :- {output2}')
-
-
-
-
-
+        record['Price']=prediction[0].round(2)       # adding the price into mongodb database
+        colle.insert_one(record)
+    return render_template('index.html',prediction_text=f' {output2}')    # return the value on the webpage
 if __name__ == "__main__":
     app.run(debug=True)
