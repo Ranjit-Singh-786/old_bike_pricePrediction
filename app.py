@@ -2,11 +2,13 @@ from flask import Flask , render_template,request
 import jsonify
 import pickle
 import numpy 
+    #  -----Backend code by using Flask----- 
+
 import sklearn
 import pymongo    # for deal with the mongodb database
-client=pymongo.MongoClient('mongodb://127.0.0.1:27017')       # create connection for the mongodb
-mydb=client['Bikeproject']  # create the database for the project
-colle=mydb.bike_data      # collection create
+# client=pymongo.MongoClient('mongodb://127.0.0.1:27017')       # create connection for the mongodb
+# mydb=client['Bikeproject']  # create the database for the project
+# colle=mydb.bike_data      # collection create
 model=pickle.load(open('bike_price_prediction.pkl','rb'))
 app=Flask(__name__)
 @app.route('/',methods=['GET'])
@@ -20,7 +22,7 @@ def predict():
         age=int(request.form['age'])
         power=int(request.form['power'])
         brand=request.form['brand_name']
-        record={'bike':brand,'kilometeres':kms_driven,'handed':owner,'year':age,'power':power}        # create the json document for database
+        # record={'bike':brand,'kilometeres':kms_driven,'handed':owner,'year':age,'power':power}        # create the json document for database
         if (brand=='Royal Enfield'):  # feature scaling string into integer
             brand=1
         elif(brand=='KTM'):
@@ -54,8 +56,8 @@ def predict():
         prediction=model.predict([[kms_driven,owner,age,power,brand]])  # pass value in the model
         output=str(prediction[0])    # change dtype int into string of prediction
         output2=str(output)
-        record['Price']=prediction[0].round(2)       # adding the price into mongodb database
-        colle.insert_one(record)
+        # record['Price']=prediction[0].round(2)       # adding the price into mongodb database
+        # colle.insert_one(record)
     return render_template('index.html',prediction_text=f' {output2}')    # return the value on the webpage
 if __name__ == "__main__":
     app.run(debug=True)
