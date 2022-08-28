@@ -6,7 +6,7 @@ warnings.filterwarnings('ignore')
 
 model=pickle.load(open('bike_price_prediction.pkl','rb'))
 app=Flask(__name__)
-@app.route('/',methods=['GET'])
+@app.route('/',methods=['GET','POST'])
 def Home():
     return render_template('index.html')
 @app.route('/predict', methods=['GET','POST'])
