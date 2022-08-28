@@ -1,14 +1,10 @@
-from flask import Flask , render_template,request
-import jsonify
+from distutils.log import warn
+from flask import Flask , render_template,request,jsonify
 import pickle
 import numpy 
-    #  -----Backend code by using Flask----- 
+import warnings
+warnings.filterwarnings('ignore')
 
-import sklearn
-import pymongo    # for deal with the mongodb database
-# client=pymongo.MongoClient('mongodb://127.0.0.1:27017')       # create connection for the mongodb
-# mydb=client['Bikeproject']  # create the database for the project
-# colle=mydb.bike_data      # collection create
 model=pickle.load(open('bike_price_prediction.pkl','rb'))
 app=Flask(__name__)
 @app.route('/',methods=['GET'])
@@ -61,3 +57,13 @@ def predict():
     return render_template('index.html',prediction_text=f' {output2}')    # return the value on the webpage
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+        #  -----Backend code by using Flask----- 
+
+# import sklearn
+# import pymongo    # for deal with the mongodb database
+# client=pymongo.MongoClient('mongodb://127.0.0.1:27017')       # create connection for the mongodb
+# mydb=client['Bikeproject']  # create the database for the project
+# colle=mydb.bike_data      # collection create
