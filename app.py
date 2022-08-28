@@ -1,4 +1,3 @@
-from distutils.log import warn
 from flask import Flask , render_template,request,jsonify
 import pickle
 import numpy 
