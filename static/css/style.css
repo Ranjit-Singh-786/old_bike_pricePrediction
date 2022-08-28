@@ -1,0 +1,129 @@
+<style>
+* {
+	margin:0px;
+	padding:0px;
+}
+body{
+	font-family: sans-serif;
+	
+}
+
+body{
+	/* background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(plant.jpg); */
+	height:100vh;
+    background-color: rgb(215, 189, 240);
+	background-size:cover;
+	background-attachment: fixed;
+    
+}
+#cls {
+    color:rgb(80, 78, 77);
+
+    background-color: rgb(202, 173, 231);
+}
+#formm{
+   margin-top: 10px;
+margin-bottom: 0px;
+    background-color:transparent;
+    margin-left: 30px;
+  
+    
+}
+#main_h{
+   
+    color:rgb(44, 46, 43);
+    font-size: 30px;
+    box-shadow: 2px 8px 5px rgb(95, 93, 93);
+
+}
+#par2{
+    font-size: 22px;
+    color: rgb(187, 130, 33);
+    font-size: 18px;
+}
+#first {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            border:solid rgb(44, 46, 43)
+            text-align: center;
+            box-shadow: 2px 8px 5px rgb(133, 130, 130);
+
+        }
+        #btn:hover{
+            background-color: rgb(240, 238, 230);
+            color: rgb(19, 18, 18);
+            border-color: transparent;
+            border-color: rgb(14, 13, 13);
+            box-shadow: 2px 8px 5px rgb(20, 20, 20);
+        }
+
+        #second {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            box-shadow: 2px 8px 5px rgb(95, 93, 93);
+
+        }
+
+        #third {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            box-shadow: 2px 8px 5px rgb(95, 93, 93);
+
+        }
+
+        #forth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            box-shadow: 2px 8px 5px rgb(95, 93, 93);
+        }
+        #fifth {
+            /* text-decoration:none; */
+            box-shadow: 2px 8px 5px rgb(95, 93, 93);
+            background-color: whitesmoke;
+            border-radius: 14px;
+            height: 25px;
+            font-size: 15px;
+            width: 250px;
+            text-align: center;
+        }
+        #btn{
+            border: 3px solid black;
+            border-radius: 50px;
+            background-color:rgb(105, 104, 102);
+            width: 210px;
+            height: 35px;
+            font-size: 15px;
+            color: whitesmoke;
+            box-shadow: 2px 8px 5px rgb(95, 93, 93);
+
+        }
+        #pred{
+            margin-left: 10px;
+            color: rgb(19, 18, 18);
+        }
+        #src{
+            border: 3px solid black;
+            border-radius: 50px;
+            background-color:rgb(105, 104, 102);
+            width: 210px;
+            height: 35px;
+            font-size: 15px;
+            color: whitesmoke;
+            box-shadow: 2px 8px 5px rgb(95, 93, 93);
+
+        }
+        #src:hover{
+            background-color: rgb(240, 238, 230);
+            color: rgb(19, 18, 18);
+            border-color: transparent;
+            border-color: rgb(14, 13, 13);
+            box-shadow: 2px 8px 5px rgb(20, 20, 20);
+        }
+</style>
